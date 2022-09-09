@@ -4,3 +4,6 @@ var questions = document.querySelector("#questions");
 var wrapper = document.querySelector("#wrapper");
 var score = 0;
 var questionIndex = 0;
+var secondsLeft = 75;
+var penalty = 5;
+var holdInt = 0;
