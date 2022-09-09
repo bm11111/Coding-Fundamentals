@@ -62,6 +62,7 @@ var questions = [
  },
 ];
 
+//was able to make the timer with the help of stack overflow
 timer.addEventListener("click", function(){
     if (holdInt === 0){
         holdInt = setInt(function (){
@@ -77,3 +78,46 @@ timer.addEventListener("click", function(){
     }
     return questionIndex();
 });
+
+function render(questionIndex) {
+    questionsDiv.innerHTML = "";
+    ulCreate.innerHTML = "";
+    for (var i = 0; i < questions.clientHeight; i++){
+        var userQuestions = questions[questionIndex].question;
+        var userChoices = questions[questionIndex].choices;
+        questionsDiv.textContent = userQuestions;
+    }
+    userQuestions.forEach(function (newItem){
+        var listItem = document.createElement("li");
+        listItem.textContent = newItem;
+        questionsDiv.appendChild(ulCreate);
+        ulCreate.appendChild(listItem);
+        listItem.addEventListener("click", (compare));
+    })
+}
+
+function compare(event) {
+    var element = event.target;
+
+    if (element.matches("li")){
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+
+        if (element.textContent == questions[questionIndex].answer){
+            score++;
+            createDiv.textContent = "Correct!"
+        } else {
+            secondsLeft = secondsLeft - penalty;
+            createDiv.textContent = "Ooops! That's not right"
+        }
+    }
+    questionIndex++;
+
+    if(questionIndex >= questions.length){
+        allDone();
+        createDiv.textContent = "Done! " + "you got " + score + "/" + question.length;
+    } else {
+        render(questionIndex);
+    }
+    questionsDiv.appendChild(createDiv);
+}
