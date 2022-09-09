@@ -4,7 +4,7 @@
     top: 20%;
     width: 500px;
     height: 500px;
-    border: 1px solid #35d693;
+    border: 1px solid blue;
 }
 
 #currenTime{
@@ -17,10 +17,13 @@
 }
 
 #startTimer{
-    background-color: #35d693;
+    background-color: blue;
     margin-left: 33%;
     padding: 15px 32px;
     font-size: 18px;
     color: black;
 }
 
+h1{
+    text-align: center;
+}

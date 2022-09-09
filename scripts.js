@@ -7,6 +7,7 @@ var questionIndex = 0;
 var secondsLeft = 75;
 var penalty = 5;
 var holdInt = 0;
+var ulCreate = document.createElement("ul");
 
 var questions = [
     {
@@ -59,5 +60,20 @@ var questions = [
     ],
     answer: "A. ()",
  },
+];
 
-]
+timer.addEventListener("click", function(){
+    if (holdInt === 0){
+        holdInt = setInt(function (){
+            secondsLeft--;
+            currentTime.textContent = "Time Left: " + secondsLeft;
+
+            if (secondsLeft <=0) {
+                clearInterval(holdInt);
+                allDone();
+                currentTime.textContent = "Your time is up!"
+            }
+        }, 1000);
+    }
+    return questionIndex();
+});
